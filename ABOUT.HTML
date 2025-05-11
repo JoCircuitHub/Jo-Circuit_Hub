@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="h.ico" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - JoCircuit Hub</title>
+    <link rel="stylesheet" href="css.css">
+    <style>
+        body {
+            background-color: #000;
+            color: #eee;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header, footer {
+            background-color: rgba(34, 34, 34, 0.8);
+            text-align: center;
+            padding: 1em;
+            border-bottom: 1px solid #444;
+        }
+        footer {
+            border-top: 1px solid #444;
+        }
+        main {
+            padding: 30px;
+            max-width: 900px;
+            margin: auto;
+        }
+        .about-box {
+            background-color: rgba(51, 51, 51, 0.7);
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
+        }
+        .about-box h1 {
+            color: #66aaff;
+            text-align: center;
+            margin-bottom: 1em;
+        }
+        .profile {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+        }
+        .profile img {
+            max-width: 280px;
+            border-radius: 10px;
+            border: 2px solid #666;
+        }
+        .profile-info {
+            max-width: 500px;
+        }
+        .profile-info h3 {
+            color: #c5c6c7;
+            margin-bottom: 0.5em;
+        }
+        .profile-info ul {
+            list-style: square;
+            padding-left: 20px;
+            color: #ddd;
+        }
+
+        /* Styles for the password prompt */
+        #password-prompt {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        #password-prompt-content {
+            background-color: #333;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+            text-align: center;
+            max-width: 80%;
+        }
+
+        #password-input {
+            padding: 12px 15px;
+            margin: 15px 0;
+            border: 1px solid #555;
+            border-radius: 6px;
+            width: 80%;
+            max-width: 300px;
+            background-color: #444;
+            color: #eee;
+        }
+
+        #password-submit {
+            padding: 12px 25px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+            margin-top: 10px;
+        }
+
+        #password-submit:hover {
+            background-color: #45a049;
+        }
+
+        #incorrect-password-message {
+            color: #FF6B6B;
+            margin-top: 15px;
+            font-size: 16px;
+            display: none;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="password-prompt">
+        <div id="password-prompt-content">
+            <h2>Enter Password</h2>
+            <input type="password" id="password-input" placeholder="Your Password">
+            <button id="password-submit">Submit</button>
+            <p id="incorrect-password-message">Incorrect password. Please try again.</p>
+        </div>
+    </div>
+
+    <div id="main-content" style="display: none;">
+        <header>
+            <h2>JoCircuit Hub</h2>
+        </header>
+
+        <main>
+            <div class="about-box">
+                <h1>About JoCircuit Hub</h1>
+                <p>
+                    JoCircuit Hub is a dynamic tech education community focused on equipping students and enthusiasts with practical skills in embedded systems, IoT, and cutting-edge electronics. With hands-on projects and real-world learning, JoCircuit Hub connects learners to innovation and inspires problem-solving through technology.
+                </p>
+
+                <div class="profile" style="margin-top: 2em;">
+                    <img src="johnson.png" alt="IT Johnson">
+                    <div class="profile-info">
+                        <h3>Profile: IT Johnson</h3>
+                        <ul>
+                            <li>Studied at ACEJ KARAMA TSS</li>
+                            <li>Joined IT group at school</li>
+                            <li>Experience: 1 month</li>
+                            <li>Technology education: Embedded Systems, IoT, and more</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            Made and Created by IT Johnson
+        </footer>
+    </div>
+
+    <script>
+        const passwordPrompt = document.getElementById('password-prompt');
+        const passwordInput = document.getElementById('password-input');
+        const passwordSubmit = document.getElementById('password-submit');
+        const incorrectPasswordMessage = document.getElementById('incorrect-password-message');
+        const mainContent = document.getElementById('main-content');
+
+        const correctPassword = "???"; // 🔐 CHANGE THIS PASSWORD
+        const localKey = "joCircuitAboutPageAccess";
+
+        // Show password prompt on every load
+        passwordPrompt.style.display = 'flex';
+        mainContent.style.display = 'none';
+
+        passwordSubmit.addEventListener('click', () => {
+            const enteredPassword = passwordInput.value.trim();
+
+            if (enteredPassword === correctPassword) {
+                localStorage.setItem(localKey, "true");
+                passwordPrompt.style.display = 'none';
+                mainContent.style.display = 'block';
+            } else {
+                incorrectPasswordMessage.style.display = 'block';
+                passwordInput.value = '';
+            }
+        });
+    </script>
+</body>
+</html>

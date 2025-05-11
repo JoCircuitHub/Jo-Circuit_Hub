@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JoCircuit Hub - Radar Project</title>
+  <link rel="stylesheet" href="css.css">
+  <link rel="icon" href="h.ico" type="image/x-icon">
+</head>
+<body>
+  <header>
+    <h2 class="title">JoCircuit Hub</h2>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li class="dropdown">
+          <a href="courses.html" class="dropbtn">Courses</a>
+          <div class="dropdown-content">
+            <a href="RADAR.html">Radar</a>
+            <a href="red.html">Red Blinking LED</a>
+            <a href="ultrasonic.html">Ultrasonic Sensor</a>
+            <a href="potentialmeter.html">Potentiometer Control</a>
+            <a href="wheel.html">Wheel Robot</a>
+          </div>
+        </li>
+        <li><a href="IOT.html">IoT</a></li>
+        <li><a href="Embedded System.html">Embedded Systems</a></li>
+      </ul>
+    </nav>
+    <link rel="icon" href="h.ico" type="image/x-icon">
+  </header>
+
+  <main class="project-page">
+    <h1>DIY Arduino Radar Project</h1>
+    <p>Learn how to build a simple radar system using an Arduino, ultrasonic sensor, and a servo motor.</p>
+
+    <section class="step">
+      <h3>Step 1: Gather Components</h3>
+      <ul>
+        <li>Arduino Uno</li>
+        <li>Ultrasonic Sensor (HC-SR04)</li>
+        <li>Servo Motor</li>
+        <li>Jumper Wires</li>
+        <li>Breadboard</li>
+        <li>Potentiometer (Optional, for adjusting sensitivity)</li>
+      </ul>
+      <img src="RADARR.png" alt="Radar Components">
+    </section>
+
+    <section class="step">
+      <h3>Step 2: Wiring the Components</h3>
+      <p>Connect the ultrasonic sensor and servo motor to the Arduino as follows:</p>
+      <ul>
+        <li>Ultrasonic Sensor VCC to Arduino 5V, GND to GND, Trig to Digital Pin X, Echo to Digital Pin Y.</li>
+        <li>Servo Motor VCC to Arduino 5V, GND to GND, Signal to Digital Pin Z.</li>
+        <li>(Optional) Potentiometer VCC to 5V, GND to GND, Wiper to Analog Pin A0.</li>
+      </ul>
+      <img src="RADARRR.png" alt="Wiring Diagram for Radar">
+    </section>
+
+    <section class="step">
+      <h3>Step 3: Arduino Code</h3>
+      <div class="code-placeholder">
+        <code>
+          #include &lt;Servo.h&gt;
+          Servo servoMotor;
+          const int trigPin = X;
+          const int echoPin = Y;
+          const int servoPin = Z; // Define the servo signal pin
+          const int potPin = A0;   // Optional potentiometer pin
+
+          void setup() {
+            servoMotor.attach(servoPin);
+            pinMode(trigPin, OUTPUT);
+            pinMode(echoPin, INPUT);
+            Serial.begin(9600);
+          }
+
+          void loop() {
+            int angle;
+            if (analogRead(potPin) > 512) { // Optional: control angle with potentiometer
+              angle = map(analogRead(potPin), 513, 1023, 0, 180);
+            } else {
+              angle = map(analogRead(potPin), 0, 511, 180, 0);
+            }
+
+            servoMotor.write(angle);
+            delay(15); // Small delay for smooth movement
+            long duration = measureDistance();
+            int distance = duration * 0.034 / 2;
+            Serial.print("Angle: ");
+            Serial.print(angle);
+            Serial.print(", Distance: ");
+            Serial.print(distance);
+            Serial.println(" cm");
+            delay(100);
+          }
+
+          long measureDistance() {
+            digitalWrite(trigPin, LOW);
+            delayMicroseconds(2);
+            digitalWrite(trigPin, HIGH);
+            delayMicroseconds(10);
+            digitalWrite(trigPin, LOW);
+            return pulseIn(echoPin, HIGH);
+          }
+        </code>
+      </div>
+    </section>
+
+    <section class="step">
+      <h3>Step 4: Assembly and Testing</h3>
+      <p>Mount the ultrasonic sensor on the servo motor. Upload the code to the Arduino and test the radar's functionality.</p>
+      <img src="RADAR.png" alt="Assembled Radar">
+    </section>
+  </main>
+
+  <footer>
+    Made and Created by IT Johnson
+  </footer>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="h.ico" type="image/x-icon">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JoCircuit Hub - Red Blinking LED</title>
+  <link rel="stylesheet" href="css.css">
+</head>
+<body>
+  <header>
+    <h2 class="title">JoCircuit Hub</h2>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li class="dropdown">
+          <a href="courses.html" class="dropbtn">Courses</a>
+          <div class="dropdown-content">
+            <a href="RADAR.html">Radar</a>
+            <a href="red.html">Red Blinking LED</a>
+            <a href="ultrasonic.html">Ultrasonic Sensor</a>
+            <a href="potentialmeter.html">Potentiometer Control</a>
+            <a href="wheel.html">Wheel Robot</a>
+          </div>
+        </li>
+        <li><a href="IOT.html">IoT</a></li>
+        <li><a href="Embedded System.html">Embedded Systems</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="project-page">
+    <h1>Arduino Red Blinking LED</h1>
+    <p>A simple project to make an LED blink using an Arduino.</p>
+
+    <section class="step">
+      <h3>Step 1: Gather Components</h3>
+      <ul>
+        <li>Arduino Uno</li>
+        <li>Red LED</li>
+        <li>220 Ohm Resistor</li>
+        <li>Jumper Wires</li>
+        <li>Breadboard</li>
+      </ul>
+      <img src="led,png" alt="Blinking LED Components">
+    </section>
+
+    <section class="step">
+      <h3>Step 2: Wiring the Circuit</h3>
+      <p>Connect the LED to the Arduino through a resistor to limit current:</p>
+      <ul>
+        <li>Connect the long leg (anode) of the LED to a digital pin on the Arduino (e.g., Pin 13) through the 220 Ohm resistor.</li>
+        <li>Connect the short leg (cathode) of the LED to the Arduino GND.</li>
+      </ul>
+      <img src="ledd.png" alt="Wiring Diagram for Blinking LED">
+    </section>
+
+    <section class="step">
+      <h3>Step 3: Arduino Code</h3>
+      <div class="code-placeholder">
+        <code>
+          // Placeholder for Blinking LED Arduino Code
+          const int ledPin = 13;
+          void setup() {
+            pinMode(ledPin, OUTPUT);
+          }
+          void loop() {
+            digitalWrite(ledPin, HIGH);
+            delay(1000);
+            digitalWrite(ledPin, LOW);
+            delay(1000);
+          }
+        </code>
+      </div>
+    </section>
+
+    <section class="step">
+      <h3>Step 4: Upload and Observe</h3>
+      <p>Upload the code to the Arduino. The red LED connected to Pin 13 should start blinking.</p>
+      <img src="leddd.png" alt="Blinking LED Setup">
+    </section>
+  </main>
+
+  <footer>
+    Made and Created by IT Johnson
+  </footer>
+</body>
+</html>

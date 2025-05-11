@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="h.ico" type="image/x-icon">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JoCircuit Hub - Ultrasonic Sensor</title>
+  <link rel="stylesheet" href="css.css">
+</head>
+<body>
+  <header>
+    <h2 class="title">JoCircuit Hub</h2>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li class="dropdown">
+          <a href="courses.html" class="dropbtn">Courses</a>
+          <div class="dropdown-content">
+            <a href="RADAR.html">Radar</a>
+            <a href="red.html">Red Blinking LED</a>
+            <a href="ultrasonic.html">Ultrasonic Sensor</a>
+            <a href="potentialmeter.html">Potentiometer Control</a>
+            <a href="wheel.html">Wheel Robot</a>
+          </div>
+        </li>
+        <li><a href="IOT.html">IoT</a></li>
+        <li><a href="#embedded">Embedded Systems</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="project-page">
+    <h1>Interfacing Ultrasonic Sensor with Arduino</h1>
+    <p>Learn how to use an HC-SR04 ultrasonic sensor to measure distance with an Arduino.</p>
+
+    <section class="step">
+      <h3>Step 1: Gather Components</h3>
+      <ul>
+        <li>Arduino Uno</li>
+        <li>Ultrasonic Sensor (HC-SR04)</li>
+        <li>Jumper Wires</li>
+        <li>Breadboard</li>
+      </ul>
+      <img src="ultraa.png" alt="Ultrasonic Sensor Components">
+    </section>
+
+    <section class="step">
+      <h3>Step 2: Wiring the Sensor</h3>
+      <p>Connect the ultrasonic sensor to the Arduino:</p>
+      <ul>
+        <li>VCC to Arduino 5V</li>
+        <li>GND to Arduino GND</li>
+        <li>Trig Pin to an Arduino Digital Pin (e.g., Pin 9)</li>
+        <li>Echo Pin to an Arduino Digital Pin (e.g., Pin 10)</li>
+      </ul>
+      <img src="ultra.png" alt="Wiring Diagram for Ultrasonic Sensor">
+    </section>
+
+    <section class="step">
+      <h3>Step 3: Arduino Code</h3>
+      <div class="code-placeholder">
+        <code>
+          // Placeholder for Ultrasonic Sensor Arduino Code
+          const int trigPin = 9;
+          const int echoPin = 10;
+          long duration;
+          int distance;
+          void setup() {
+            pinMode(trigPin, OUTPUT);
+            pinMode(echoPin, INPUT);
+            Serial.begin(9600);
+          }
+          void loop() {
+            // ... (rest of the code for measuring distance)
+            digitalWrite(trigPin, LOW);
+            delayMicroseconds(2);
+            digitalWrite(trigPin, HIGH);
+            delayMicroseconds(10);
+            digitalWrite(trigPin, LOW);
+            duration = pulseIn(echoPin, HIGH);
+            distance= duration*0.034/2;
+            Serial.print("Distance: ");
+            Serial.print(distance);
+            Serial.println(" cm");
+            delay(1000);
+          }
+        </code>
+      </div>
+    </section>
+
+    <section class="step">
+      <h3>Step 4: Upload and Monitor</h3>
+      <p>Upload the code to the Arduino and open the Serial Monitor to see the measured distance.</p>
+      <img src="ultraaa.png" alt="Ultrasonic Sensor Setup">
+    </section>
+  </main>
+
+  <footer>
+    Made and Created by IT Johnson
+  </footer>
+</body>
+</html>

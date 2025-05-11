@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="h.ico" type="image/x-icon">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>JoCircuit Hub - ESP & Smart Home</title>
+  <link rel="stylesheet" href="css.css" />
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #000;
+      color: #eee;
+      background-image: url("jjj.png");
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center center;
+    }
+    header {
+      background-color: rgba(34, 34, 34, 0.8);
+      color: #eee;
+      padding: 1em 0;
+      text-align: center;
+      border-bottom: 1px solid #444;
+    }
+    nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+    }
+    nav li {
+      margin: 0 1em;
+    }
+    nav a {
+      color: #ddd;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    nav a:hover {
+      color: #88ccff;
+    }
+    main {
+      padding: 20px;
+    }
+    h1, h2, h3 {
+      color: #ebe8eb;
+    }
+    .step {
+      margin-bottom: 20px;
+      padding: 15px;
+      border: 1px solid #444;
+      border-radius: 8px;
+      background-color: rgba(51, 51, 51, 0.7);
+    }
+    .step h3 {
+      margin-top: 0;
+      color: #66aaff;
+      border-bottom: 1px solid #555;
+      padding-bottom: 0.5em;
+    }
+    ul {
+      list-style: none;
+      padding-left: 20px;
+    }
+    ul li::before {
+      content: "\25CF";
+      color: #adb0b4;
+      display: inline-block;
+      width: 1em;
+      margin-left: -1em;
+    }
+    footer {
+      text-align: center;
+      padding: 1em 0;
+      background-color: rgba(155, 101, 101, 0.8);
+      color: #eee;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      border-top: 1px solid #444;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h2 class="title">JoCircuit Hub</h2>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="courses.html">Courses</a></li>
+        <li><a href="IOT.html">IoT</a></li>
+        <li><a href="Embedded System.html">Embedded Systems</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section id="devices">
+      <h1 style="text-align: center; font-size: 2.5em; color: #66aaff; text-shadow: 0 0 10px rgba(214, 226, 235, 0.8);">
+        Devices & Applications: ESP32, ESP8266 & Smart Home
+      </h1>
+      <img src="esp.png" alt="ESP32 and Smart Home Devices" style="display: block; margin: 20px auto; max-width: 100%; height: auto; border-radius: 8px;">
+
+      <div class="step">
+        <h3>ESP32: The Brain of Your Smart Projects</h3>
+        <p>The ESP32 is a powerful microcontroller with built-in Wi-Fi and Bluetooth. It’s ideal for real-time, connected applications.</p>
+        <ul>
+          <li>Built-in Wi-Fi and Bluetooth (BLE)</li>
+          <li>Dual-core CPU up to 240MHz</li>
+          <li>Real-time sensor integration and fast processing</li>
+          <li>Compatible with Arduino IDE, MicroPython, and more</li>
+        </ul>
+      </div>
+
+      <div class="step">
+        <h3>ESP8266: Lightweight & Affordable IoT Connectivity</h3>
+        <img src="esppp.png" alt="ESP32 and Smart Home Devices" style="display: block; margin: 20px auto; max-width: 100%; height: auto; border-radius: 8px;">
+        <p>The ESP8266 is a budget-friendly Wi-Fi microchip perfect for simple IoT tasks and remote control features.</p>
+        <ul>
+          <li>Wi-Fi enabled microcontroller</li>
+          <li>Small size and low power usage</li>
+          <li>Easy to use with Arduino libraries</li>
+          <li>Great for sensors, relays, and basic control</li>
+        </ul>
+      </div>
+
+      <div class="step">
+        <h3>Smart Home: Automate Your World</h3>
+        <img src="espp.png" alt="ESP32 and Smart Home Devices" style="display: block; margin: 20px auto; max-width: 100%; height: auto; border-radius: 8px;">
+        <p>Smart home systems use microcontrollers to automate lighting, climate, security, and more—customized for your lifestyle.</p>
+        <ul>
+          <li>Control appliances remotely via smartphone or web</li>
+          <li>Monitor temperature, motion, and humidity</li>
+          <li>Integrate voice assistants like Alexa or Google</li>
+          <li>Use platforms like Blynk, Home Assistant, or Node-RED</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    Made and Created by IT Johnson
+  </footer>
+</body>
+</html>

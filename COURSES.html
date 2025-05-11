@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="h.ico" type="image/x-icon">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JoCircuit Hub - Courses</title>
+  <link rel="stylesheet" href="css.css">
+  <style>
+    /* Basic inline styles - you can expand in courses.css */
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; background-color: #f4f4f4; color: #333; }
+    header { background-color: #3a3a3a; color: #fff; padding: 0.8em 0; text-align: center; } /* Adjusted header padding */
+    nav ul { list-style: none; padding: 0; margin: 0; display: flex; justify-content: center; }
+    nav li { margin: 0 0.8em; } /* Slightly reduced nav item margin */
+    nav a { color: #eee; text-decoration: none; }
+    main { padding: 20px; }
+    h1, h2, h3 { color: #212529; }
+    .step { margin-bottom: 20px; padding: 15px; border: 1px solid #ddd; border-radius: 8px; background-color: #fff; }
+    .step h3 { margin-top: 0; }
+    .image-placeholder { width: 300px; height: 200px; background-color: #ccc; margin: 10px auto; display: block; text-align: center; line-height: 200px; color: #555; border-radius: 5px; }
+    .code-placeholder { background-color: #eee; padding: 15px; border-radius: 5px; overflow-x: auto; font-family: monospace; font-size: 0.9em; white-space: pre-wrap; }
+    footer { text-align: center; padding: 1em 0; background-color: #333; color: #fff; position: fixed; bottom: 0; width: 100%; }
+    .title {
+      font-size: 2em; /* Reduced font size for the title */
+      margin-bottom: 0.2em;
+      letter-spacing: 0.5px; /* Slightly reduced letter spacing */
+    }
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 1;
+    }
+    .dropdown-content a {
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+    }
+    .dropdown-content a:hover {background-color: #ddd;}
+    .dropdown:hover .dropdown-content {display: block;}
+    .dropdown:hover .dropbtn {background-color: #363636;} /* Slightly darker hover for dropdown */
+    .dropbtn {
+      background-color: #3a3a3a;
+      color: #eee;
+      padding: 0; /* Remove padding from the button itself */
+      border: none;
+      cursor: pointer;
+      font-size: inherit; /* Inherit font size from nav links */
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1 class="title">JoCircuit Hub</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li class="dropdown">
+          <a href="courses.html" class="dropbtn">Courses</a>
+          <div class="dropdown-content">
+            <a href="RADAR.html">Radar</a>
+            <a href="red.html">Red Blinking LED</a>
+            <a href="ultrasonic.html">Ultrasonic Sensor</a>
+            <a href="potentialmeter.html">Potentiometer Control</a>
+            <a href="wheel.html">Wheel Robot</a>
+          </div>
+        </li>
+        <li><a href="IOT.html">IoT</a></li>
+        <li><a href="Embedded System.html">Embedded Systems</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section id="teaching-technology">
+      <h1>Exploring the World of Technology through Engaging Courses</h1>
+      <p>At JoCircuit Hub, we believe that learning about technology should be an exciting and hands-on experience. Our courses are designed to demystify complex concepts and empower you to become a confident creator and innovator. Whether you're taking your first steps in electronics or looking to expand your knowledge in specialized areas, we offer a range of learning opportunities to suit your interests and skill level.</p>
+
+      <div class="step">
+        <h3>Our Philosophy: Practical Learning and Deep Exploration</h3>
+        <p>We go beyond simply presenting information. Our philosophy centers on <strong>active learning through doing</strong>. We meticulously craft step-by-step guides and engaging projects that encourage you to actively interact with the technology. By building tangible, real-world applications, you'll not only grasp the fundamental principles but also develop crucial <strong>problem-solving, critical thinking, and analytical skills</strong>. Our courses are designed to foster <strong>experimentation and creativity</strong>, providing a safe and encouraging environment to tinker, innovate, and learn from both successes and challenges. We believe that true understanding comes from hands-on experience, allowing you to move from passive knowledge consumption to active technological mastery.</p>
+        <img src="arduino.png" alt="Someone working on an IoT project" style="display: block; margin: 10px auto; max-width: 100%; height: auto; border-radius: 5px;">
+      </div>
+
+      <div class="step">
+        <h3>What You'll Learn: Foundational to Advanced Concepts Across the Technology Spectrum</h3>
+        <p>Our comprehensive course offerings span a wide spectrum of topics within the dynamic world of technology, ensuring a learning path for everyone, from curious beginners to seasoned enthusiasts:</p>
+        <ul>
+          <li><strong>Basic Electronics:</strong> Lay the groundwork for understanding the fundamental building blocks of modern technology. Explore core electronic components like resistors, capacitors, inductors, diodes, and transistors. Learn about basic circuit laws (Ohm's Law, Kirchhoff's Laws), circuit analysis techniques, and the principles behind both analog and digital circuits.</li>
+          <li><strong>Arduino Programming:</strong> Dive into the world of embedded programming with the popular Arduino platform. Master the basics of the Arduino IDE, learn the C/C++ programming language as it applies to microcontrollers, and understand how to control digital and analog I/O pins. Explore interfacing with various sensors, actuators, and communication protocols.</li>
+          <li><strong>Circuit Design and Implementation:</strong> Move beyond basic circuits to designing and building your own functional electronic systems. Learn about schematic capture, PCB design principles (using tools like KiCad or EasyEDA), component selection, soldering techniques, and best practices for prototyping and testing your circuits.</li>
+          <li><strong>Robotics:</strong> Explore the exciting intersection of mechanics, electronics, and software. Learn about robot kinematics, different types of robots (e.g., wheeled, legged, robotic arms), motor control systems, sensor integration for perception and navigation, and programming robotic behaviors.</li>
+          <li><strong>Internet of Things (IoT):</strong> Discover how to connect everyday objects to the internet, creating smart and interconnected systems. Learn about IoT architectures, communication protocols (like MQTT, HTTP), cloud platforms for data storage and analysis, sensor data acquisition, and building secure and scalable IoT solutions.</li>
+          <li><strong>Embedded Systems:</strong> Delve deeper into the world of microcontrollers and their applications in a vast array of devices, from consumer electronics to industrial automation. Explore different microcontroller architectures (e.g., ARM, AVR), real-time operating systems (RTOS), low-level programming, and interfacing with peripherals.</li>
+          <li><strong>Advanced Topics (Future Offerings):</strong> We are continuously expanding our curriculum to include advanced topics such as artificial intelligence (AI) at the edge, machine learning for embedded systems, advanced sensor technologies, wireless communication protocols (e.g., Bluetooth Low Energy, Wi-Fi), and more specialized areas within electronics and computer engineering.</li>
+        </ul>
+        <img src="klk.gif" alt="Someone working on an IoT project" style="display: block; margin: 10px auto; max-width: 100%; height: auto; border-radius: 5px;">
+      </div>
+
+      <div class="step">
+        <h3>Project-Based Learning: Turning Theory into Tangible Creations</h3>
+        <p>A cornerstone of our educational approach is <strong>project-based learning</strong>. We believe that the best way to learn is by doing. Our courses are rich with engaging and challenging projects that allow you to apply the theoretical knowledge you gain in a practical context. From building a functional radar system to creating interactive LED displays, from designing smart home automation systems to constructing autonomous robots, these projects will solidify your understanding and empower you to bring your own innovative ideas to life.</p>
+        <div class="image-placeholder">Image showcasing students or individuals working on various technology projects with enthusiasm</div>
+      </div>
+
+      <div class="step">
+        <h3>Join Our Vibrant Community of Technological Skills(JoCircuit Hub)</h3>
+        <p>Learning is a collaborative journey. At JoCircuit Hub, you'll become part of a <strong>supportive and enthusiastic community</strong> of fellow learners, makers, and innovators. Connect with others who share your passion for technology, ask questions, share your progress, and collaborate on exciting projects. Our forums and interactive platforms provide a space for knowledge exchange, peer-to-peer learning, and mentorship, enriching your learning experience and fostering lifelong connections within the tech community.</p>
+        <div class="image-placeholder">Image of people collaborating on a technology project, perhaps in a workshop or online forum setting</div>
+      </div>
+
+      <p>Explore the project links above to dive into specific hands-on tutorials and start your journey into the exciting world of technology with JoCircuit Hub!</p>
+    </section>
+  </main>
+
+  <footer>
+    Made and Created by IT Johnson
+  </footer>
+</body>
+</html>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <link rel="icon" href="h.ico" type="image/x-icon">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JoCircuit Hub - Courses</title>
+  <link rel="stylesheet" href="css.css">
+  <style>
+    /* Basic inline styles - you can expand in courses.css */
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; background-color: #f4f4f4; color: #333; }
+    header { background-color: #333; color: #fff; padding: 1em 0; text-align: center; }
+    nav ul { list-style: none; padding: 0; margin: 0; display: flex; justify-content: center; }
+    nav li { margin: 0 1em; }
+    nav a { color: #eee; text-decoration: none; }
+    main { padding: 20px; }
+    h1, h2, h3 { color: #333; }
+    .step { margin-bottom: 20px; padding: 15px; border: 1px solid #ddd; border-radius: 8px; background-color: #fff; }
+    .step h3 { margin-top: 0; }
+    .image-placeholder { width: 300px; height: 200px; background-color: #ccc; margin: 10px auto; display: block; text-align: center; line-height: 200px; color: #555; border-radius: 5px; }
+    .code-placeholder { background-color: #eee; padding: 15px; border-radius: 5px; overflow-x: auto; font-family: monospace; font-size: 0.9em; white-space: pre-wrap; } /* Added white-space: pre-wrap; */
+    footer { text-align: center; padding: 1em 0; background-color: #333; color: #fff; position: fixed; bottom: 0; width: 100%; }
+  </style>
+</head>
+<body>
+  <header>
+    <h2 class="title">JoCircuit Hub</h2>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li class="dropdown">
+          <a href="courses.html" class="dropbtn">Courses</a>
+          <div class="dropdown-content">
+            <a href="RADAR.html">Radar</a>
+            <a href="red.html">Red Blinking LED</a>
+            <a href="ultrasonic.html">Ultrasonic Sensor</a>
+            <a href="potentialmeter.html">Potentiometer Control</a>
+            <a href="wheel.html">Wheel Robot</a>
+          </div>
+        </li>
+        <li><a href="IOT.html">IoT</a></li>
+        <li><a href="Embedded System.html">Embedded Systems</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section id="robot-building-guide">
+      <h1>Building Your First 4-Wheel Robot: A Step-by-Step Guide</h1>
+      <p>This guide will walk you through the basic steps of creating a simple 4-wheel robot. Remember that specific components and code may vary depending on your chosen parts.</p>
+
+      <div class="step">
+        <h3>Step 1: Gathering the Components</h3>
+        <p>First, you'll need to gather all the necessary parts. Here's a basic list:</p>
+        <ul>
+          <li>Robot Chassis (4-wheel drive recommended)</li>
+          <li>4 x DC Motors with Wheels</li>
+          <li>Motor Driver (e.g., L298N)</li>
+          <li>Arduino Uno or similar microcontroller</li>
+          <li>Power Supply (Battery pack and voltage regulator if needed)</li>
+          <li>Jumper Wires</li>
+          <li>Breadboard (Optional, but helpful for prototyping)</li>
+          <li>Mounting hardware (screws, standoffs, etc.)</li>
+        </ul>
+        <img src="w3.png" alt="Robot Components" style="display: block; margin: 10px auto; max-width: 100%; height: auto; border-radius: 5px;">
+      </div>
+
+      <div class="step">
+        <h3>Step 2: Assembling the Chassis and Motors</h3>
+        <p>Attach the DC motors to the robot chassis according to the manufacturer's instructions. Ensure the wheels are securely mounted to the motor shafts.</p>
+        <img src="w2.png" alt="Chassis with Motors Attached" style="display: block; margin: 10px auto; max-width: 100%; height: auto; border-radius: 5px;">
+      </div>
+
+      <div class="step">
+        <h3>Step 3: Wiring the Motors to the Motor Driver</h3>
+        <p>Connect the motor wires to the motor driver. Typically, a motor driver will have inputs for motor power, ground, and control signals for each motor.</p>
+        <img src="w1.png" alt="Motors Wired to Motor Driver" style="display: block; margin: 10px auto; max-width: 100%; height: auto; border-radius: 5px;">
+        <p>Refer to the datasheet of your specific motor driver for the correct wiring diagram.</p>
+      </div>
+
+      <div class="step">
+        <h3>Step 4: Connecting the Motor Driver to the Arduino</h3>
+        <p>Now, connect the control pins of the motor driver to the digital output pins of your Arduino. You'll also need to connect the power and ground lines between the Arduino and the motor driver (making sure the voltage levels are compatible).</p>
+        <img src="w.png" alt="Motor Driver Wired to Arduino" style="display: block; margin: 10px auto; max-width: 100%; height: auto; border-radius: 5px;">
+        <p>Example connections (may vary):</p>
+        <ul>
+          <li>Motor 1 Control Pins (e.g., IN1, IN2) to Arduino Digital Pins (e.g., 2, 3)</li>
+          <li>Motor 2 Control Pins (e.g., IN3, IN4) to Arduino Digital Pins (e.g., 4, 5)</li>
+          <li>Motor Driver Enable Pins (ENA, ENB) to Arduino PWM Pins (for speed control, e.g., 9, 10)</li>
+        </ul>
+      </div>
+
+      <div class="step">
+        <h3>Step 5: Powering the Robot</h3>
+        <p>Connect your power supply to the motor driver and the Arduino. Ensure you are providing the correct voltage to each component. A separate power supply for the motors is often recommended to avoid drawing too much current from the Arduino's power supply.</p>
+        <img src="ww.png" alt="Robot with Power Supply Connected" style="display: block; margin: 10px auto; max-width: 100%; height: auto; border-radius: 5px;">
+      </div>
+
+      <div class="step">
+        <h3>Step 6: Arduino Code for Basic Movement</h3>
+        <p>Here's a basic Arduino code snippet to control the robot's movement.</p>
+        <div class="code-placeholder">
+          <code>
+// Define motor driver control pins
+const int motor1_in1 = 2;
+const int motor1_in2 = 3;
+const int motor2_in1 = 4;
+const int motor2_in2 = 5;
+const int enableA = 9;   // PWM for motor 1 speed
+const int enableB = 10; // PWM for motor 2 speed
+
+void setup() {
+  // Set motor control pins as outputs
+  pinMode(motor1_in1, OUTPUT);
+  pinMode(motor1_in2, OUTPUT);
+  pinMode(motor2_in1, OUTPUT);
+  pinMode(motor2_in2, OUTPUT);
+  pinMode(enableA, OUTPUT);
+  pinMode(enableB, OUTPUT);
+
+  // Initialize motor speeds to 0
+  analogWrite(enableA, 255); // Set initial speed (0-255)
+  analogWrite(enableB, 255);
+  stop();
+}
+
+void loop() {
+  // Basic movement commands - you can control these with sensors, Bluetooth, etc.
+  forward();
+  delay(2000);
+  backward();
+  delay(2000);
+  left();
+  delay(1500);
+  right();
+  delay(1500);
+  stop();
+  delay(3000);
+}
+
+void forward() {
+  digitalWrite(motor1_in1, HIGH);
+  digitalWrite(motor1_in2, LOW);
+  digitalWrite(motor2_in1, HIGH);
+  digitalWrite(motor2_in2, LOW);
+}
+
+void backward() {
+  digitalWrite(motor1_in1, LOW);
+  digitalWrite(motor1_in2, HIGH);
+  digitalWrite(motor2_in1, LOW);
+  digitalWrite(motor2_in2, HIGH);
+}
+
+void left() {
+  digitalWrite(motor1_in1, HIGH);
+  digitalWrite(motor1_in2, LOW);
+  digitalWrite(motor2_in1, LOW);
+  digitalWrite(motor2_in2, HIGH);
+}
+
+void right() {
+  digitalWrite(motor1_in1, LOW);
+  digitalWrite(motor1_in2, HIGH);
+  digitalWrite(motor2_in1, HIGH);
+  digitalWrite(motor2_in2, LOW);
+}
+
+void stop() {
+  digitalWrite(motor1_in1, LOW);
+  digitalWrite(motor1_in2, LOW);
+  digitalWrite(motor2_in1, LOW);
+  digitalWrite(motor2_in2, LOW);
+}
+      </code>
+        </div>
+        <p><strong>Note:</strong> This is a very basic code. You'll need to adapt it based on your motor driver and desired functionality.</p>
+      </div>
+
+      <div class="step">
+        <h3>Step 7: Testing and Further Development</h3>
+        <p>Upload the code to your Arduino and test the robot's movement. You can now expand on this basic platform by adding sensors, a control interface, and more complex behaviors.</p>
+        <img src="www.png" alt="Someone working on an IoT project" style="display: block; margin: 10px auto; max-width: 100%; height: auto; border-radius: 5px;">
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    Made and Created by IT Johnson
+  </footer>
+</body>
+</html>
