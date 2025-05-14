@@ -5,11 +5,204 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>JoCircuit Hub - Ultrasonic Sensor</title>
-  <link rel="stylesheet" href="css.css">
+  <style>
+    /* Reset & Base */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      color: #fff;
+      background-color: #000;
+      background-image: url("iic.png");
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center center;
+      line-height: 1.6;
+      position: relative;
+      overflow-x: hidden;
+      padding-top: 80px;
+    }
+
+    /* Blinking effect like wheel.html */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(ellipse at center, rgba(255,0,0,0.05) 0%, rgba(0,0,0,0.9) 100%);
+      z-index: -1;
+      animation: backgroundPulse 6s infinite ease-in-out;
+    }
+
+    @keyframes backgroundPulse {
+      0%, 100% { opacity: 0.4; }
+      50% { opacity: 0.9; }
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: #111;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.8em 2em;
+      z-index: 999;
+      border-bottom: 2px solid #444;
+    }
+
+    .logo-title {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo-title img {
+      height: 40px;
+      width: 40px;
+      margin-right: 10px;
+    }
+
+    .title {
+      font-size: 1.6em;
+      color: #0ff;
+      font-weight: bold;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+    }
+
+    nav li {
+      margin: 0 1em;
+      position: relative;
+    }
+
+    nav a {
+      color: #eee;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #ff0;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #222;
+      top: 100%;
+      left: 0;
+      min-width: 160px;
+      border: 1px solid #333;
+      z-index: 10;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .dropdown-content a {
+      display: block;
+      padding: 10px;
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #333;
+    }
+
+    main {
+      padding: 30px 20px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    h1, h3 {
+      color: #0ff;
+      margin-bottom: 10px;
+    }
+
+    .step {
+      /* background: #111;
+      border: 1px solid #333;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 30px;
+      transition: transform 0.3s ease; */
+      
+      background: #111;
+      border: 1px solid #333;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 30px;
+      transition: transform 0.5s ease, opacity 0.9s ease;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .step:hover {
+      transform: scale(1.02);
+    }
+    .step.visible {
+      opacity: 0.9;
+      transform: translateY(0);
+    }
+
+    .step ul {
+      margin-top: 10px;
+      margin-bottom: 10px;
+      padding-left: 20px;
+    }
+
+    img {
+      max-width: 100%;
+      border-radius: 6px;
+      margin-top: 15px;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    img:hover {
+      transform: scale(1.05);
+    }
+
+    .code-placeholder {
+      background: #222;
+      border-left: 5px solid #0ff;
+      padding: 15px;
+      border-radius: 6px;
+      color: #0f0;
+      font-family: 'Courier New', monospace;
+      white-space: pre-wrap;
+      overflow-x: auto;
+    }
+
+    footer {
+      background-color: #343a40;
+      color: #fff;
+      text-align: center;
+      padding: 0.001em 0;
+      font-size: 0.6em;
+      margin-top: 40px;
+    }
+  </style>
 </head>
 <body>
   <header>
-    <h2 class="title">JoCircuit Hub</h2>
+    <div class="logo-title">
+      <img src="jocir.png" alt="JoCircuit Logo">
+      <h2 class="title">JoCircuit Hub</h2>
+    </div>
     <nav>
       <ul>
         <li><a href="index.html">Home</a></li>
@@ -32,6 +225,7 @@
   <main class="project-page">
     <h1>Interfacing Ultrasonic Sensor with Arduino</h1>
     <p>Learn how to use an HC-SR04 ultrasonic sensor to measure distance with an Arduino.</p>
+    <p>This sensor is normally used to measure the obstacle and the sensor, It normaly uses trigger and Echo.  </p>
 
     <section class="step">
       <h3>Step 1: Gather Components</h3>
@@ -40,6 +234,8 @@
         <li>Ultrasonic Sensor (HC-SR04)</li>
         <li>Jumper Wires</li>
         <li>Breadboard</li>
+        <li>Arduino cable</li>
+        <li>Battery or using Laptop</li>
       </ul>
       <img src="ultraa.png" alt="Ultrasonic Sensor Components">
     </section>
@@ -50,8 +246,8 @@
       <ul>
         <li>VCC to Arduino 5V</li>
         <li>GND to Arduino GND</li>
-        <li>Trig Pin to an Arduino Digital Pin (e.g., Pin 9)</li>
-        <li>Echo Pin to an Arduino Digital Pin (e.g., Pin 10)</li>
+        <li>Trig Pin to Arduino Pin 9</li>
+        <li>Echo Pin to Arduino Pin 10</li>
       </ul>
       <img src="ultra.png" alt="Wiring Diagram for Ultrasonic Sensor">
     </section>
@@ -59,32 +255,30 @@
     <section class="step">
       <h3>Step 3: Arduino Code</h3>
       <div class="code-placeholder">
-        <code>
-          // Placeholder for Ultrasonic Sensor Arduino Code
-          const int trigPin = 9;
-          const int echoPin = 10;
-          long duration;
-          int distance;
-          void setup() {
-            pinMode(trigPin, OUTPUT);
-            pinMode(echoPin, INPUT);
-            Serial.begin(9600);
-          }
-          void loop() {
-            // ... (rest of the code for measuring distance)
-            digitalWrite(trigPin, LOW);
-            delayMicroseconds(2);
-            digitalWrite(trigPin, HIGH);
-            delayMicroseconds(10);
-            digitalWrite(trigPin, LOW);
-            duration = pulseIn(echoPin, HIGH);
-            distance= duration*0.034/2;
-            Serial.print("Distance: ");
-            Serial.print(distance);
-            Serial.println(" cm");
-            delay(1000);
-          }
-        </code>
+<code>const int trigPin = 9;
+const int echoPin = 10;
+long duration;
+int distance;
+
+void setup() {
+  pinMode(trigPin, OUTPUT);
+  pinMode(echoPin, INPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+  digitalWrite(trigPin, LOW);
+  delayMicroseconds(2);
+  digitalWrite(trigPin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin, LOW);
+  duration = pulseIn(echoPin, HIGH);
+  distance = duration * 0.034 / 2;
+  Serial.print("Distance: ");
+  Serial.print(distance);
+  Serial.println(" cm");
+  delay(1000);
+}</code>
       </div>
     </section>
 
@@ -96,7 +290,27 @@
   </main>
 
   <footer>
-    Made and Created by IT Johnson
+    Made and Created by IT Johnson © 2025 JoCircuit Hub
   </footer>
+
+ <script>
+    // Intersection Observer for fade-in effect
+    document.addEventListener('DOMContentLoaded', () => {
+      const steps = document.querySelectorAll('.step');
+
+      const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if(entry.isIntersecting){
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+
+      steps.forEach(step => {
+        observer.observe(step);
+      });
+    });
+  </script>
 </body>
 </html>
