@@ -1,191 +1,329 @@
 <!DOCTYPE html>
- <html lang="en">
- <head>
-    <link rel="icon" href="h.ico" type="image/x-icon">
+<html lang="en">
+<head>
+  <link rel="icon" href="h.ico" type="image/x-icon">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>JoCircuit Hub - Courses</title>
   <link rel="stylesheet" href="css.css">
   <style>
-   /* Basic inline styles - you can expand in css.css */
-   body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #000; /* Deep black background */
-    color: #eee;
-    background-image: url("jjj.png"); /* Replace with the actual path to your image */
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center center;
-   }
-   header { background-color: rgba(34, 34, 34, 0.8); color: #eee; padding: 1em 0; text-align: center; border-bottom: 1px solid #444; }
-   nav ul { list-style: none; padding: 0; margin: 0; display: flex; justify-content: center; }
-   nav li { margin: 0 1em; }
-   nav a { color: #ddd; text-decoration: none; transition: color 0.3s ease; }
-   nav a:hover { color: #88ccff; } /* Highlight color */
-   main { padding: 20px; }
-   h1, h2, h3 { color: #ebe8eb; } /* Futuristic heading color */
-   .step { margin-bottom: 20px; padding: 15px; border: 1px solid #444; border-radius: 8px; background-color: rgba(51, 51, 51, 0.7); }
-   .step h3 { margin-top: 0; color: #66aaff; border-bottom: 1px solid #555; padding-bottom: 0.5em; }
-   .image-placeholder { width: 300px; height: 200px; background-color: #333; margin: 10px auto; display: block; text-align: center; line-height: 200px; color: #777; border-radius: 5px; border: 1px solid #555; }
-   .code-placeholder { background-color: #333; padding: 15px; border-radius: 5px; overflow-x: auto; font-family: monospace; font-size: 0.9em; white-space: pre-wrap; color: #eee; border: 1px solid #555; }
-   footer { text-align: center; padding: 1em 0; background-color: rgba(34, 34, 34, 0.8); color: #eee; position: fixed; bottom: 0; width: 100%; border-top: 1px solid #444; }
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #000;
+      color: #eee;
+      background-image: url("ports.png"); /* Optional: Add background image */
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center center;
+    }
 
-   /* IoT Specific Styling */
-   #iot {
-    background-color: rgba(26, 26, 26, 0.7); /* Slightly transparent dark background for IoT section */
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0, 102, 170, 0.3); /* Glowing shadow */
-   }
+    header {
+      background-color: rgba(34, 34, 34, 0.8);
+      color: #eee;
+      padding: 1em 0;
+      text-align: center;
+      border-bottom: 1px solid #444;
+    }
 
-   #iot h1 {
-    text-align: center;
-    font-size: 2.5em;
-    margin-bottom: 1.5em;
-    text-shadow: 0 0 10px rgba(214, 226, 235, 0.8); /* Glowing text */
-   }
+    nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      position: relative;
+    }
 
-   #iot .step {
-    background-color: rgba(51, 51, 51, 0.7); /* Slightly transparent dark step background */
-    border: 1px solid #333;
-    box-shadow: 0 0 10px rgba(0, 102, 170, 0.1);
-   }
+    nav li {
+      margin: 0 1em;
+      position: relative;
+    }
 
-   #iot .step h3 {
-    color: #c1c5c9;
-    border-bottom: 1px solid #444;
-   }
+    nav a {
+      color: #ddd;
+      text-decoration: none;
+      transition: color 0.3s ease;
+      padding: 10px 15px;
+      display: block;
+    }
 
-   #iot ul {
-    list-style: none;
-    padding-left: 20px;
-   }
+    nav a:hover {
+      color: #88ccff;
+    }
 
-   #iot ul li::before {
-    content: "\25CF"; /* Small circle bullet */
-    color: #adb0b4;
-    display: inline-block;
-    width: 1em;
-    margin-left: -1em;
-   }
+    .dropdown {
+      position: relative;
+    }
 
-   #iot a {
-    color: #c5c6c7;
-    text-decoration: none;
-    transition: color 0.3s ease;
-   }
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: rgba(34, 34, 34, 0.95);
+      min-width: 180px;
+      box-shadow: 0px 8px 16px rgba(0,0,0,0.4);
+      z-index: 1;
+      top: 100%;
+      left: 0;
+    }
 
-   #iot a:hover {
-    color: #c5c6c7;
-   }
+    .dropdown-content a {
+      color: #ddd;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+    }
 
-   /* Projects Button Styling */
-   .projects-button-container {
-    text-align: center;
-    margin-top: 30px;
-   }
+    .dropdown-content a:hover {
+      background-color: #444;
+    }
 
-   .projects-button {
-    display: inline-block;
-    background-color: #c5c6c7; /* A blue color */
-    color: #eee;
-    padding: 15px 30px;
-    text-decoration: none;
-    border-radius: 8px;
-    font-size: 1.2em;
-    transition: background-color 0.3s ease;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-   }
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
 
-   .projects-button:hover {
-    background-color: #c5c6c7;
-   }
+    main {
+      flex: 1;
+      padding: 20px;
+    }
 
-   .projects-button a {
-    color: #eee;
-    text-decoration: none;
-    margin: 0 10px; /* Space between links */
-   }
+    h1, h2, h3 {
+      color: #e8ebeb;
+    }
 
-   .projects-button a:hover {
-    text-decoration: underline;
-   }
+     .step {
+      background: #111;
+      border: 1px solid #333;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 30px;
+      transition: transform 0.3s ease, opacity 0.6s ease;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .step.visible {
+      opacity: 0.9;
+      transform: translateY(0);
+    }
+    .step h3 {
+      margin-top: 0;
+      color: #66aaff;
+      border-bottom: 1px solid #555;
+      padding-bottom: 0.5em;
+    }
+
+    img {
+      display: block;
+      margin: 10px auto;
+      max-width: 100%;
+      height: auto;
+      border-radius: 5px;
+    }
+
+    .code-placeholder {
+      background-color: #333;
+      padding: 15px;
+      border-radius: 5px;
+      overflow-x: auto;
+      font-family: monospace;
+      font-size: 0.9em;
+      white-space: pre-wrap;
+      color: #eee;
+      border: 1px solid #555;
+    }
+
+    footer {
+      background-color: #343a40;
+      color: #fff;
+      text-align: center;
+      padding: 0.001em 0;
+      font-size: 0.6em;
+      margin-top: 40px;
+    }
+
+    #iot {
+      background-color: rgba(26, 26, 26, 0.7);
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 102, 170, 0.3);
+      text-align: center;
+
+
+      /* font-size: 2em;
+      margin-bottom: 10px;
+      animation: fadeInDown 0.6s ease-out;
+      text-shadow: 0 0 10px rgba(214, 226, 235, 0.8); 
+      text-align: center; */
+    }
+
+     #iot h1 {
+      text-align: center;
+      font-size: 2.5em;
+      margin-bottom: 1.5em;
+      animation: fadeInDown 0.6s ease-out;
+      text-shadow: 0 0 10px rgba(214, 226, 235, 0.8); 
+     }
+
+    #iot .step h3 {
+      color: #c1c5c9;
+      border-bottom: 1px solid #444;
+    }
+
+    #iot ul {
+      list-style: none;
+      padding-left: 20px;
+    }
+
+    #iot ul li::before {
+      content: "\25CF";
+      color: #adb0b4;
+      display: inline-block;
+      width: 1em;
+      margin-left: -1em;
+    }
+
+    #iot a {
+      color: #c5c6c7;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    #iot a:hover {
+      color: #c5c6c7;
+    }
+
+    .projects-button-container {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    .projects-button {
+      display: inline-block;
+      background-color: #169edd1e;
+      color: #121213;
+      padding: 15px 30px;
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 1.2em;
+      transition: background-color 0.3s ease;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    }
+
+    .projects-button a {
+      color: #3e8b9e;
+      text-decoration: none;
+      margin: 0 10px;
+    }
+
+    .projects-button a:hover {
+      text-decoration: underline;
+    }
+
+    .sidebar {
+      width: 60px;
+      background-color: #000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 20px;
+      border: none;
+      box-shadow: none;
+      outline: none;
+    }
   </style>
- </head>
- <body>
+</head>
+<body>
   <header>
-   <h2 class="title">JoCircuit Hub</h2>
-   <nav>
-    <ul>
-     <li><a href="index.html">Home</a></li>
-     <li class="dropdown">
-      <a href="COURSES.html" class="dropbtn">Courses</a>
-      </div>
-     </li>
-     <li class="dropdown">
-        <a href="IOT.html" class="dropbtn">IoT</a>
-        <div class="dropdown-content">
-         <a href="iot devices.html">IoT and Devices</a>
-  
-     <li><a href="Embedded System.html">Embedded Systems</a></li>
-    </ul>
-   </nav>
+    <h2 class="title">JoCircuit Hub</h2>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="courses.html">Courses</a></li>
+        <li class="dropdown">
+          <a href="IOT.html">IoT</a>
+          <div class="dropdown-content">
+            <a href="iot devices.html">IoT and Devices</a>
+          </div>
+        </li>
+        <li><a href="Embedded System.html">Embedded Systems</a></li>
+      </ul>
+    </nav>
   </header>
 
   <main>
-   <section id="iot">
-    <h1>Unlocking the Potential of the Internet of Things: Connect, Control, and Innovate</h1>
-    <p>Welcome to the Internet of Things (IoT) section at JoCircuit Hub, where we empower you to explore the fascinating world of interconnected devices and intelligent systems. In this dynamic field, everyday objects gain the ability to communicate, interact, and exchange data, creating a web of possibilities that is reshaping industries and our daily lives. Our learning journey in IoT is designed to take you from understanding the foundational concepts to building your own smart, interconnected solutions.</p>
+    <section id="iot">
+      <h1>Unlocking the Potential of the Internet of Things: Connect, Control, and Innovate</h1>
+      <p>Welcome to the Internet of Things (IoT) section at JoCircuit Hub, where we empower you to explore the fascinating world of interconnected devices and intelligent systems...</p>
 
-    <div class="step">
-     <h3>Our Approach to IoT Learning: From Connectivity to Application</h3>
-     <p>At JoCircuit Hub, we believe in a hands-on approach to mastering the Internet of Things. Our step-by-step guides and engaging projects will immerse you in the practical aspects of IoT development. You'll learn how to establish seamless communication between devices, leverage various connectivity protocols, and harness the power of data generated by these interconnected systems. Our focus is on building real-world IoT applications, fostering your ability to identify challenges and create innovative solutions that bridge the physical and digital realms.</p>
-     <img src="gh.png" alt="Interconnected IoT Devices" style="display: block; margin: 10px auto; max-width: 100%; height: auto; border-radius: 5px;">
-    </div>
+      <div class="step">
+        <h3>Our Approach to IoT Learning: From Connectivity to Application</h3>
+        <p>At JoCircuit Hub, we believe in a hands-on approach to mastering the Internet of Things...</p>
+        <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExYWdyeHR5bHViOGxtYzFmdjRjc2R6NWxsaWV1bzkxY3drbDE3b2l6byZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/JOamEbyqLENSKitMHi/giphy.gif" alt="Interconnected IoT Devices">
+      </div>
 
-    <div class="step">
-     <h3>What You'll Explore in Our IoT Modules: Building the Connected World</h3>
-     <p>Our comprehensive IoT modules will guide you through the essential layers and concepts of building interconnected systems:</p>
-     <ul>
-      <li><strong>IoT Architectures:</strong> Understand the fundamental building blocks of IoT systems, from edge devices and gateways to cloud platforms and application layers. Explore different architectural patterns and learn how to design scalable and robust IoT solutions.</li>
-      <li><strong>Communication Protocols:</strong> Master the languages of IoT connectivity. Dive into protocols like <a href="#">MQTT</a>, <a href="#">HTTP</a>, <a href="#">CoAP</a>, and <a href="#">Bluetooth Low Energy</a>, understanding their strengths, weaknesses, and best use cases for different IoT scenarios.</li>
-      <li><strong>Sensor Data Acquisition:</strong> Learn how to interface with a wide array of sensors to gather real-world data. Explore techniques for data acquisition, preprocessing, and transmission, turning raw sensor readings into valuable insights.</li>
-      <li><strong>Cloud Platforms for IoT:</strong> Discover the power of cloud platforms in managing, storing, and analyzing IoT data. Explore popular platforms like <a href="#">AWS IoT Core</a>, <a href="#">Google Cloud IoT Platform</a>, and <a href="#">Azure IoT Hub</a>, and learn how to leverage their services for your projects.</li>
-      <li><strong>Actuation and Control:</strong> Go beyond sensing and learn how to control physical devices based on collected data. Explore actuators, control mechanisms, and feedback loops to create intelligent and responsive IoT systems.</li>
-      <li><strong>Security in IoT:</strong> Understand the critical importance of security in interconnected systems. Learn about common IoT vulnerabilities and best practices for implementing secure communication, device authentication, and data protection.</li>
-      <li><strong>Building IoT Applications:</strong> Put your knowledge into practice by developing exciting IoT applications, such as smart home systems, environmental monitoring solutions, industrial automation tools, and more.</li>
-     </ul>
-     <img src="hj.png" alt="Various IoT Applications" style="display: block; margin: 10px auto; max-width: 100%; height: auto; border-radius: 5px;">
-    </div>
+      <div class="step">
+        <h3>What You'll Explore in Our IoT Modules: Building the Connected World</h3>
+        <p>Our comprehensive IoT modules will guide you through the essential layers and concepts...</p>
+        <ul>
+          <li><strong>IoT Architectures:</strong> Understand the fundamental building blocks...</li>
+          <li><strong>Communication Protocols:</strong> Dive into protocols like <a href="#">MQTT</a>, <a href="#">HTTP</a>...</li>
+          <li><strong>Sensor Data Acquisition:</strong> Learn how to interface with a wide array of sensors...</li>
+          <li><strong>Cloud Platforms for IoT:</strong> Explore platforms like <a href="#">AWS IoT Core</a>...</li>
+          <li><strong>Actuation and Control:</strong> Create intelligent and responsive IoT systems...</li>
+          <li><strong>Security in IoT:</strong> Learn best practices for secure communication and data protection...</li>
+          <li><strong>Building IoT Applications:</strong> Develop real-world IoT solutions...</li>
+        </ul>
+        <img src="hj.png" alt="Various IoT Applications">
+      </div>
 
-    <div class="step">
-     <h3>Hands-on IoT Projects: Connecting Ideas to Reality</h3>
-     <p>Our IoT learning journey is heavily driven by engaging projects that allow you to apply your understanding in practical ways. You'll have the opportunity to design and build your own connected devices, collect and analyze real-time data, and create intelligent systems that respond to their environment. These projects will solidify your skills and empower you to innovate within the rapidly evolving landscape of the Internet of Things.</p>
-     <img src="boy.png" alt="Someone working on an IoT project" style="display: block; margin: 10px auto; max-width: 100%; height: auto; border-radius: 5px;">
-    </div>
+      <div class="step">
+        <h3>Hands-on IoT Projects and Innovation: Connecting Ideas to Reality</h3>
+        <p>Our IoT learning journey is heavily driven by engaging projects that allow you to apply your understanding...</p>
+        <img src="boy.png" alt="Someone working on an IoT project">
+        <img src="J.png" alt="People collaborating on an IoT project">
+      </div>
 
-    <div class="step">
-     <h3>Become Part of the IoT Innovation Community</h3>
-     <p>Connect with fellow IoT enthusiasts, share your project ideas, and collaborate on building the future of interconnected devices. Our community provides a platform to exchange knowledge, troubleshoot challenges, and inspire new innovations in the exciting field of the Internet of Things.</p>
-     <img src="J.png" alt="People collaborating on an IoT project" style="display: block; margin: 10px auto; max-width: 100%; height: auto; border-radius: 5px;">
-    </div>
+      <div class="projects-button-container">
+        <div class="projects-button">
+          More Exciting Projects:
+          <a href="https://circuitdigest.com/article/top-30-diy-iot-projects-from-basics-to-advanced" target="_blank" rel="noopener noreferrer">Circuit Digest</a> |
+          <a href="Embedded System.html" target="_blank" rel="noopener noreferrer">JoCircuit Projects</a>
+        </div>
+      </div>
 
-    <div class="projects-button-container">
-     <div class="projects-button">
-      More Exciting Projects:
-      <a href="https://circuitdigest.com/article/top-30-diy-iot-projects-from-basics-to-advanced" target="_blank" rel="noopener noreferrer">Circuit Digest</a> |
-      <a href="Embedded System.html" target="_blank" rel="noopener noreferrer">JoCircuit Projects</a>
-     </div>
-    </div>
-
-    <p>Dive into our IoT modules and projects to unlock the transformative potential of connected devices and become a driving force in the next era of technology!</p>
-   </section>
+      <p style="text-align:center;">Dive into our IoT modules and projects to unlock the transformative potential of connected devices and become a driving force in the next era of technology!</p>
+    </section>
   </main>
 
   <footer>
-   Made and Created by IT Johnson
+    Made and Created by IT J*****
   </footer>
- </body>
- </html>
+
+  
+   <script>
+    // Intersection Observer for fade-in effect
+    document.addEventListener('DOMContentLoaded', () => {
+      const steps = document.querySelectorAll('.step');
+
+      const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if(entry.isIntersecting){
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+
+      steps.forEach(step => {
+        observer.observe(step);
+      });
+    });
+  </script>
+
+</body>
+</html>
