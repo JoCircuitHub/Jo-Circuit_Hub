@@ -11,6 +11,7 @@
             background-color: #000;
             color: #eee;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+             background-image: url("teach.png"); 
             margin: 0;
             padding: 0;
         }
@@ -63,7 +64,11 @@
             padding-left: 20px;
             color: #ddd;
         }
-
+        /* .button {
+            list-style: square;
+            padding-left: 20px;
+            color: #979191;
+        } */
         /* Styles for the password prompt */
         #password-prompt {
             position: fixed;
@@ -142,7 +147,7 @@
             <div class="about-box">
                 <h1>About JoCircuit Hub</h1>
                 <p>
-                    JoCircuit Hub is a dynamic tech education community focused on equipping students and enthusiasts with practical skills in embedded systems, IoT, and cutting-edge electronics. With hands-on projects and real-world learning, JoCircuit Hub connects learners to innovation and inspires problem-solving through technology.
+                    JoCircuit Hub is a dynamic tech education community that is founded by IT Johnsonn, It is focused on equipping students and enthusiasts with practical skills in embedded systems, IoT, and cutting-edge electronics. With hands-on projects and real-world learning, JoCircuit Hub connects learners to innovation and inspires problem-solving through technology.
                 </p>
 
                 <div class="profile" style="margin-top: 2em;">
@@ -151,16 +156,16 @@
                         <h3>Profile: IT Johnson</h3>
                         <ul>
                             <li>Studied at ACEJ KARAMA TSS</li>
-                            <li>Joined IT group at school</li>
                             <li>Experience: 1 month</li>
-                            <li>Status: Embedded System designer and Firmware developer</li>
                             <li>Technology education: Embedded Systems, IoT, and more</li>
+                            <li>CV: Embedded Systems designer & Firmware developer</li>
+                            <li>Tel: 0734988521/0722432821</li>
                         </ul>
                     </div>
                 </div>
             </div>
         </main>
-
+   <button><a href="index.html">Back to Home</a></button>
         <footer>
             Made and Created by IT Johnson
         </footer>
@@ -173,7 +178,7 @@
         const incorrectPasswordMessage = document.getElementById('incorrect-password-message');
         const mainContent = document.getElementById('main-content');
 
-        const correctPassword = "???"; // 🔐 CHANGE THIS PASSWORD
+        const correctPassword = "??/"; // 🔐 CHANGE THIS PASSWORD
         const localKey = "joCircuitAboutPageAccess";
 
         // Show password prompt on every load
