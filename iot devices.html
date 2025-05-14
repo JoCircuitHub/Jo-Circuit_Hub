@@ -13,11 +13,12 @@
       padding: 0;
       background-color: #000;
       color: #eee;
-      background-image: url("jjj.png");
+      background-image: url("io.png");
       background-repeat: no-repeat;
       background-size: cover;
       background-position: center center;
     }
+
     header {
       background-color: rgba(34, 34, 34, 0.8);
       color: #eee;
@@ -25,6 +26,18 @@
       text-align: center;
       border-bottom: 1px solid #444;
     }
+
+    .title {
+      font-size: 2.8em;
+      background: linear-gradient(to right, #fff, #fff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-fill-color: transparent;
+      margin: 0;
+      animation: fadeInDown 0.6s ease-out;
+    }
+
     nav ul {
       list-style: none;
       padding: 0;
@@ -32,23 +45,34 @@
       display: flex;
       justify-content: center;
     }
+
     nav li {
       margin: 0 1em;
     }
+
     nav a {
       color: #ddd;
       text-decoration: none;
       transition: color 0.3s ease;
     }
+
     nav a:hover {
       color: #88ccff;
     }
+
+    /* Remove dots from nav bar explicitly */
+    nav li::before {
+      content: none !important;
+    }
+
     main {
       padding: 20px;
     }
+
     h1, h2, h3 {
       color: #ebe8eb;
     }
+
     .step {
       margin-bottom: 20px;
       padding: 15px;
@@ -56,32 +80,36 @@
       border-radius: 8px;
       background-color: rgba(51, 51, 51, 0.7);
     }
+
     .step h3 {
       margin-top: 0;
-      color: #66aaff;
+      color: #cac3c396;
       border-bottom: 1px solid #555;
       padding-bottom: 0.5em;
     }
-    ul {
-      list-style: none;
-      padding-left: 20px;
-    }
-    ul li::before {
+
+    /* Only add dots to content lists inside main/step sections */
+    main ul li::before,
+    .step ul li::before {
       content: "\25CF";
       color: #adb0b4;
       display: inline-block;
       width: 1em;
       margin-left: -1em;
     }
+
     footer {
+      background-color: #343a40;
+      color: #fff;
       text-align: center;
-      padding: 1em 0;
-      background-color: rgba(155, 101, 101, 0.8);
-      color: #eee;
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-      border-top: 1px solid #444;
+      padding: 0.001em 0;
+      font-size: 0.6em;
+      margin-top: 40px;
+    }
+
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
@@ -100,10 +128,10 @@
 
   <main>
     <section id="devices">
-      <h1 style="text-align: center; font-size: 2.5em; color: #66aaff; text-shadow: 0 0 10px rgba(214, 226, 235, 0.8);">
+      <h1 style="text-align: center; font-size: 2.5em; color: #1f1e1e; text-shadow: 0 0 10px rgba(214, 226, 235, 0.8);">
         Devices & Applications: ESP32, ESP8266 & Smart Home
       </h1>
-      <img src="esp.png" alt="ESP32 and Smart Home Devices" style="display: block; margin: 20px auto; max-width: 100%; height: auto; border-radius: 8px;">
+      <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExcG1rcjBoaHNmcTRkNjN0MGtqM255N3ZwYW1wNHJpNmpicm4zYnUydyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/TEizcARAs8uQ4fQNhS/giphy.gif" alt="ESP32 and Smart Home Devices" style="display: block; margin: 20px auto; max-width: 100%; height: auto; border-radius: 8px;">
 
       <div class="step">
         <h3>ESP32: The Brain of Your Smart Projects</h3>
@@ -118,7 +146,7 @@
 
       <div class="step">
         <h3>ESP8266: Lightweight & Affordable IoT Connectivity</h3>
-        <img src="esppp.png" alt="ESP32 and Smart Home Devices" style="display: block; margin: 20px auto; max-width: 100%; height: auto; border-radius: 8px;">
+        <img src="esppp.png" alt="ESP8266 Wi-Fi Chip" style="display: block; margin: 20px auto; max-width: 100%; height: auto; border-radius: 8px;">
         <p>The ESP8266 is a budget-friendly Wi-Fi microchip perfect for simple IoT tasks and remote control features.</p>
         <ul>
           <li>Wi-Fi enabled microcontroller</li>
@@ -129,8 +157,18 @@
       </div>
 
       <div class="step">
+        <h3>ESP8266 GPIO Pins</h3>
+        <img src="nodem.png" alt="ESP8266 Wi-Fi Chip" style="display: block; margin: 20px auto; max-width: 100%; height: auto; border-radius: 8px;">
+        <p>The ESP8266 GPIO Pins enable in declaration and connections.</p>
+        <ul>
+          <li>Within the codes make sure you declare your gpio pins you have used </li>
+          <li>Easy to use with esp libraries</li>
+        </ul>
+      </div>
+
+      <div class="step">
         <h3>Smart Home: Automate Your World</h3>
-        <img src="espp.png" alt="ESP32 and Smart Home Devices" style="display: block; margin: 20px auto; max-width: 100%; height: auto; border-radius: 8px;">
+        <img src="espp.png" alt="Smart Home Devices" style="display: block; margin: 20px auto; max-width: 100%; height: auto; border-radius: 8px;">
         <p>Smart home systems use microcontrollers to automate lighting, climate, security, and more—customized for your lifestyle.</p>
         <ul>
           <li>Control appliances remotely via smartphone or web</li>
@@ -143,7 +181,7 @@
   </main>
 
   <footer>
-    Made and Created by IT Johnson
+    Made and Created by IT J******
   </footer>
 </body>
 </html>
