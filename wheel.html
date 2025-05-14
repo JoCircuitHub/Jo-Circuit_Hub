@@ -1,30 +1,198 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-     <link rel="icon" href="h.ico" type="image/x-icon">
+  <link rel="icon" href="h.ico" type="image/x-icon">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>JoCircuit Hub - Courses</title>
-  <link rel="stylesheet" href="css.css">
+  <title>JoCircuit Hub - Wheel Robot</title>
   <style>
-    /* Basic inline styles - you can expand in courses.css */
-    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; background-color: #f4f4f4; color: #333; }
-    header { background-color: #333; color: #fff; padding: 1em 0; text-align: center; }
-    nav ul { list-style: none; padding: 0; margin: 0; display: flex; justify-content: center; }
-    nav li { margin: 0 1em; }
-    nav a { color: #eee; text-decoration: none; }
-    main { padding: 20px; }
-    h1, h2, h3 { color: #333; }
-    .step { margin-bottom: 20px; padding: 15px; border: 1px solid #ddd; border-radius: 8px; background-color: #fff; }
-    .step h3 { margin-top: 0; }
-    .image-placeholder { width: 300px; height: 200px; background-color: #ccc; margin: 10px auto; display: block; text-align: center; line-height: 200px; color: #555; border-radius: 5px; }
-    .code-placeholder { background-color: #eee; padding: 15px; border-radius: 5px; overflow-x: auto; font-family: monospace; font-size: 0.9em; white-space: pre-wrap; } /* Added white-space: pre-wrap; */
-    footer { text-align: center; padding: 1em 0; background-color: #333; color: #fff; position: fixed; bottom: 0; width: 100%; }
+    /* Reset & Base */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      color: #fff;
+      background-color: #000;
+      background-image: url("iic.png");
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center center;
+      line-height: 1.6;
+      position: relative;
+      overflow-x: hidden;
+      padding-top: 80px;
+    }
+
+    /* Background effect */
+     body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(ellipse at center, rgba(255,0,0,0.05) 0%, rgba(0,0,0,0.9) 100%);
+      z-index: -1;
+      animation: backgroundPulse 6s infinite ease-in-out;
+    }
+
+    @keyframes backgroundPulse {
+      0%, 100% { opacity: 0.4; }
+      50% { opacity: 0.9; }
+    } 
+
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: #111;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.8em 2em;
+      z-index: 999;
+      border-bottom: 2px solid #444;
+    }
+
+    .logo-title {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo-title img {
+      height: 40px;
+      width: 40px;
+      margin-right: 10px;
+    }
+
+    .title {
+      font-size: 1.6em;
+      color: #0ff;
+      font-weight: bold;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+    }
+
+    nav li {
+      margin: 0 1em;
+      position: relative;
+    }
+
+    nav a {
+      color: #eee;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #ff0;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #222;
+      top: 100%;
+      left: 0;
+      min-width: 160px;
+      border: 1px solid #333;
+      z-index: 10;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .dropdown-content a {
+      display: block;
+      padding: 10px;
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #333;
+    }
+
+    main {
+      padding: 30px 20px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    h1, h3 {
+      color: #0ff;
+      margin-bottom: 10px;
+    }
+
+    .step {
+      background: #111;
+      border: 1px solid #333;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 30px;
+      transition: transform 0.3s ease, opacity 0.6s ease;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .step.visible {
+      opacity: 0.9;
+      transform: translateY(0);
+    }
+
+    .step ul {
+      margin-top: 10px;
+      margin-bottom: 10px;
+      padding-left: 20px;
+    }
+
+    img {
+      max-width: 100%;
+      border-radius: 6px;
+      margin-top: 15px;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    img:hover {
+      transform: scale(1.05);
+    }
+
+    .code-placeholder {
+      background: #222;
+      border-left: 5px solid #0ff;
+      padding: 15px;
+      border-radius: 6px;
+      color: #0f0;
+      font-family: 'Courier New', monospace;
+      white-space: pre-wrap;
+      overflow-x: auto;
+    }
+
+    footer {
+      background-color: #343a40;
+      color: #fff;
+      text-align: center;
+      padding: 0.001em 0;
+      font-size: 0.6em;
+      margin-top: 40px;
+    }
   </style>
 </head>
 <body>
   <header>
-    <h2 class="title">JoCircuit Hub</h2>
+    <div class="logo-title">
+      <img src="jocir.png" alt="JoCircuit Logo">
+      <h2 class="title">JoCircuit Hub</h2>
+    </div>
     <nav>
       <ul>
         <li><a href="index.html">Home</a></li>
@@ -45,148 +213,113 @@
   </header>
 
   <main>
-    <section id="robot-building-guide">
-      <h1>Building Your First 4-Wheel Robot: A Step-by-Step Guide</h1>
-      <p>This guide will walk you through the basic steps of creating a simple 4-wheel robot. Remember that specific components and code may vary depending on your chosen parts.</p>
+    <h1>Building a 4-Wheel Drive Robot</h1>
+    <p>Learn how to assemble and program a basic four-wheel robot using Arduino.</p>
 
-      <div class="step">
-        <h3>Step 1: Gathering the Components</h3>
-        <p>First, you'll need to gather all the necessary parts. Here's a basic list:</p>
-        <ul>
-          <li>Robot Chassis (4-wheel drive recommended)</li>
-          <li>4 x DC Motors with Wheels</li>
-          <li>Motor Driver (e.g., L298N)</li>
-          <li>Arduino Uno or similar microcontroller</li>
-          <li>Power Supply (Battery pack and voltage regulator if needed)</li>
-          <li>Jumper Wires</li>
-          <li>Breadboard (Optional, but helpful for prototyping)</li>
-          <li>Mounting hardware (screws, standoffs, etc.)</li>
-        </ul>
-        <img src="w3.png" alt="Robot Components" style="display: block; margin: 10px auto; max-width: 100%; height: auto; border-radius: 5px;">
+    <section class="step">
+      <h3>Step 1: Components Needed</h3>
+      <ul>
+        <li>4 DC Motors</li>
+        <li>Motor Driver Module (L298N)</li>
+        <li>Arduino Uno</li>
+        <li>Chassis with Wheels</li>
+        <li>Battery Pack</li>
+        <li>Jumper Wires</li>
+      </ul>
+      <img src="w2.png" alt="Wheel Robot Components">
+      <img src="ww.png" alt="Wheel Robot Components">
+    </section>
+
+    <section class="step">
+      <h3>Step 2: Wiring</h3>
+      <p>Connect the motors to the driver and the driver to the Arduino.</p>
+      <img src="w1.png" alt="Wiring Diagram">
+      <img src="w.png" alt="Wheel Robot Components">
+    </section>
+
+    <section class="step">
+      <h3>Step 3: Arduino Code</h3>
+      <div class="code-placeholder">
+<code>// Define motor driver pins
+     #define IN1 8
+     #define IN2 9
+     #define IN3 10
+     #define IN4 11
+     #define ENA 5    // Enable pin for motor A (connected to IN1, IN2)
+     #define ENB 6    // Enable pin for motor B (connected to IN3, IN4)
+     
+     void setup() {
+       // Set motor driver pins as output
+       pinMode(IN1, OUTPUT); 
+       pinMode(IN2, OUTPUT); 
+       pinMode(IN3, OUTPUT); 
+       pinMode(IN4, OUTPUT); 
+       pinMode(ENA, OUTPUT);  // Enable pin for motor A
+       pinMode(ENB, OUTPUT);  // Enable pin for motor B
+     }
+     
+     void loop() {
+       // Move Forward with 100% speed
+       analogWrite(ENA, 255);  // Max speed for motor A
+       analogWrite(ENB, 255);  // Max speed for motor B
+       digitalWrite(IN1, HIGH);
+       digitalWrite(IN2, LOW);
+       digitalWrite(IN3, HIGH);
+       digitalWrite(IN4, LOW);
+       delay(1000); // Move forward for 1 second
+     
+       // Stop
+       analogWrite(ENA, 0);  // Stop motor A
+       analogWrite(ENB, 0);  // Stop motor B
+       delay(500); // Stop for 0.5 second
+     
+       // Move Backward with 50% speed
+       analogWrite(ENA, 128);  // 50% speed for motor A
+       analogWrite(ENB, 128);  // 50% speed for motor B
+       digitalWrite(IN1, LOW);
+       digitalWrite(IN2, HIGH);
+       digitalWrite(IN3, LOW);
+       digitalWrite(IN4, HIGH);
+       delay(1000); // Move backward for 1 second
+     
+       // Stop
+       analogWrite(ENA, 0);  // Stop motor A
+       analogWrite(ENB, 0);  // Stop motor B
+       delay(500); // Stop for 0.5 second
+     }
+     </code>
       </div>
+    </section>
 
-      <div class="step">
-        <h3>Step 2: Assembling the Chassis and Motors</h3>
-        <p>Attach the DC motors to the robot chassis according to the manufacturer's instructions. Ensure the wheels are securely mounted to the motor shafts.</p>
-        <img src="w2.png" alt="Chassis with Motors Attached" style="display: block; margin: 10px auto; max-width: 100%; height: auto; border-radius: 5px;">
-      </div>
-
-      <div class="step">
-        <h3>Step 3: Wiring the Motors to the Motor Driver</h3>
-        <p>Connect the motor wires to the motor driver. Typically, a motor driver will have inputs for motor power, ground, and control signals for each motor.</p>
-        <img src="w1.png" alt="Motors Wired to Motor Driver" style="display: block; margin: 10px auto; max-width: 100%; height: auto; border-radius: 5px;">
-        <p>Refer to the datasheet of your specific motor driver for the correct wiring diagram.</p>
-      </div>
-
-      <div class="step">
-        <h3>Step 4: Connecting the Motor Driver to the Arduino</h3>
-        <p>Now, connect the control pins of the motor driver to the digital output pins of your Arduino. You'll also need to connect the power and ground lines between the Arduino and the motor driver (making sure the voltage levels are compatible).</p>
-        <img src="w.png" alt="Motor Driver Wired to Arduino" style="display: block; margin: 10px auto; max-width: 100%; height: auto; border-radius: 5px;">
-        <p>Example connections (may vary):</p>
-        <ul>
-          <li>Motor 1 Control Pins (e.g., IN1, IN2) to Arduino Digital Pins (e.g., 2, 3)</li>
-          <li>Motor 2 Control Pins (e.g., IN3, IN4) to Arduino Digital Pins (e.g., 4, 5)</li>
-          <li>Motor Driver Enable Pins (ENA, ENB) to Arduino PWM Pins (for speed control, e.g., 9, 10)</li>
-        </ul>
-      </div>
-
-      <div class="step">
-        <h3>Step 5: Powering the Robot</h3>
-        <p>Connect your power supply to the motor driver and the Arduino. Ensure you are providing the correct voltage to each component. A separate power supply for the motors is often recommended to avoid drawing too much current from the Arduino's power supply.</p>
-        <img src="ww.png" alt="Robot with Power Supply Connected" style="display: block; margin: 10px auto; max-width: 100%; height: auto; border-radius: 5px;">
-      </div>
-
-      <div class="step">
-        <h3>Step 6: Arduino Code for Basic Movement</h3>
-        <p>Here's a basic Arduino code snippet to control the robot's movement.</p>
-        <div class="code-placeholder">
-          <code>
-// Define motor driver control pins
-const int motor1_in1 = 2;
-const int motor1_in2 = 3;
-const int motor2_in1 = 4;
-const int motor2_in2 = 5;
-const int enableA = 9;   // PWM for motor 1 speed
-const int enableB = 10; // PWM for motor 2 speed
-
-void setup() {
-  // Set motor control pins as outputs
-  pinMode(motor1_in1, OUTPUT);
-  pinMode(motor1_in2, OUTPUT);
-  pinMode(motor2_in1, OUTPUT);
-  pinMode(motor2_in2, OUTPUT);
-  pinMode(enableA, OUTPUT);
-  pinMode(enableB, OUTPUT);
-
-  // Initialize motor speeds to 0
-  analogWrite(enableA, 255); // Set initial speed (0-255)
-  analogWrite(enableB, 255);
-  stop();
-}
-
-void loop() {
-  // Basic movement commands - you can control these with sensors, Bluetooth, etc.
-  forward();
-  delay(2000);
-  backward();
-  delay(2000);
-  left();
-  delay(1500);
-  right();
-  delay(1500);
-  stop();
-  delay(3000);
-}
-
-void forward() {
-  digitalWrite(motor1_in1, HIGH);
-  digitalWrite(motor1_in2, LOW);
-  digitalWrite(motor2_in1, HIGH);
-  digitalWrite(motor2_in2, LOW);
-}
-
-void backward() {
-  digitalWrite(motor1_in1, LOW);
-  digitalWrite(motor1_in2, HIGH);
-  digitalWrite(motor2_in1, LOW);
-  digitalWrite(motor2_in2, HIGH);
-}
-
-void left() {
-  digitalWrite(motor1_in1, HIGH);
-  digitalWrite(motor1_in2, LOW);
-  digitalWrite(motor2_in1, LOW);
-  digitalWrite(motor2_in2, HIGH);
-}
-
-void right() {
-  digitalWrite(motor1_in1, LOW);
-  digitalWrite(motor1_in2, HIGH);
-  digitalWrite(motor2_in1, HIGH);
-  digitalWrite(motor2_in2, LOW);
-}
-
-void stop() {
-  digitalWrite(motor1_in1, LOW);
-  digitalWrite(motor1_in2, LOW);
-  digitalWrite(motor2_in1, LOW);
-  digitalWrite(motor2_in2, LOW);
-}
-      </code>
-        </div>
-        <p><strong>Note:</strong> This is a very basic code. You'll need to adapt it based on your motor driver and desired functionality.</p>
-      </div>
-
-      <div class="step">
-        <h3>Step 7: Testing and Further Development</h3>
-        <p>Upload the code to your Arduino and test the robot's movement. You can now expand on this basic platform by adding sensors, a control interface, and more complex behaviors.</p>
-        <img src="www.png" alt="Someone working on an IoT project" style="display: block; margin: 10px auto; max-width: 100%; height: auto; border-radius: 5px;">
-      </div>
+    <section class="step">
+      <h3>Step 4: Test and Run</h3>
+      <p>Upload the code and see your robot move forward and backward in a loop.</p>
+      <img src="www.png" alt="Wheel Robot Running">
     </section>
   </main>
 
   <footer>
-    Made and Created by IT Johnson
+    Made and Created by IT Johnson © 2025 JoCircuit Hub
   </footer>
+
+  <script>
+    // Intersection Observer for fade-in effect
+    document.addEventListener('DOMContentLoaded', () => {
+      const steps = document.querySelectorAll('.step');
+
+      const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if(entry.isIntersecting){
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+
+      steps.forEach(step => {
+        observer.observe(step);
+      });
+    });
+  </script>
 </body>
 </html>
